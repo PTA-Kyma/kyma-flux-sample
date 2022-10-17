@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ecx-dev-my353318
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: dev-infrastructure-mlp-admin
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  path: ./my353318-dev/infrastructure/mlp-admin
+  targetNamespace: ecx-dev-my353318
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system

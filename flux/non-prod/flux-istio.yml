@@ -1,0 +1,26 @@
+# following https://github.com/fluxcd/flux2/issues/598#issuecomment-756999645
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: source-controller-fqdn-fix
+  namespace: flux-system
+spec:
+  hosts:
+  - source-controller.flux-system.svc.cluster.local.
+  http:
+  - route:
+    - destination:
+        host: source-controller.flux-system.svc.cluster.local
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: notification-controller-fqdn-fix
+  namespace: flux-system
+spec:
+  hosts:
+  - notification-controller.flux-system.svc.cluster.local.
+  http:
+  - route:
+    - destination:
+        host: notification-controller.flux-system.svc.cluster.local

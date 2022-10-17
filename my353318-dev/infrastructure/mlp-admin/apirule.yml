@@ -1,0 +1,21 @@
+apiVersion: gateway.kyma-project.io/v1alpha1
+kind: APIRule
+metadata:
+  name: mlp-admin
+  labels:
+    mlp.de/category: infrastructure
+    app: mlp-admin
+spec:
+  gateway: kyma-gateway.kyma-system.svc.cluster.local
+  rules:
+    - accessStrategies:
+        - config: {}
+          handler: noop
+      methods:
+        - GET
+        - POST
+      path: /.*
+  service:
+    host: mlp-admin-dev
+    name: mlp-admin
+    port: 80
